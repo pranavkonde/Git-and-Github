@@ -1,0 +1,9 @@
+Q5. Difference between --force push and --force-with-lease, You have to show the use of both, also you have to show in what scenario --force-with-lease is used?
+-> force overwrites a remote branch with your local branch.
+
+--force-with-lease is a safer option that will not overwrite any work on the remote branch if more commits were added to the remote branch (by another team-member or coworker or what have you). It ensures you do not overwrite someone elses work by force pushing.
+
+For example. We have a project with a feature branch that both Alice and Bob are going to work on. They both clone this repository and start work. Alice initially completes her part of the feature, and pushes this up to the main repository. This is all well and good. Bob also finishes his work, but before pushing it up he notices some changes had been merged into master. Wanting to keep a clean tree, he performs a rebase against the master branch. Of-course, when he goes to push this rebased branch it will be rejected. However not realising that Alice has already pushed her work, he performs a push --force. Unfortunately, this will erase all record of Alice's changes in the central repository.
+
+What --force-with-lease does is refuse to update a branch unless it is the state that we expect; i.e. nobody has updated the branch upstream. In practice this works by checking that the upstream ref is what we expect, because refs are hashes, and implicitly encode the chain of parents into their value.
+

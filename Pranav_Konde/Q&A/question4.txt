@@ -1,0 +1,14 @@
+Q4. How to delete one commit or multiple commits permanently Write command for it. 
+-> Deleting the commit in Git must be approached in one of two ways, depending on if you have or have not pushed your changes.Running these commands will DELETE your working directory changes. Any changes to tracked files in the working tree since <commit> are discarded. Be sure to separately save any changes you'd like to have.
+ 
+1. If your changes have not been pushed yet simply enter the command 
+
+git reset --hard HEAD~1
+
+This will discard all working tree changes and move HEAD to the commit before HEAD. 
+
+2.  if you have already pushed your changes you will need to run the following code
+
+git push origin HEAD --force 
+
+If others have pulled this branch you would be better off starting a new branch. If you don't do this when someone else pulled, it will just merge it into their work, and you will get it pushed back up again.

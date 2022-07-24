@@ -1,0 +1,17 @@
+Q2. How to set multiple remote repositories for the same project? Explain the use case. you should have a working demo of it.
+->You can have as many remotes as you want, but you can only have one remote named "origin". The " origin " remote is not special in any way, except that it is the default remote created by Git when you clone an existing repository. You can configure a second remote, push to/pull from that remote, and set up some branches to track branches from that remote instead of origin.
+
+Use cases: It is easy to synchronize code between multiple git repositories, especially, pushing to multiple remotes.
+
+Steps:
+
+$ git remote add github URL
+
+# push master to github
+$ git push github master
+
+# Push my-branch to github and set it to track github/my-branch
+$ git push -u github my-branch
+
+# Make some existing branch track github instead of origin
+$ git branch --set-upstream other-branch github/other-branch
